@@ -1,4 +1,7 @@
 import QuoteDisplay from "./Display/Display";
+import AuthorDisplay from "./Display/AuthorDisplay";
+import Button from "./Display/Button";
+import TwitterButton from "./Display/TwitterButton";
 import "./App.css";
 
 function App() {
@@ -6,10 +9,11 @@ function App() {
     <div id="quote-box" className="App">
       <QuoteDisplay />
 
-      <h4 id="author">author goes here</h4>
-      <button type="submit" className="btn btn-primary btn-lg" id="new-quote">
-        Get Quote
-      </button>
+      <AuthorDisplay />
+
+      <Button />
+
+      <TwitterButton />
     </div>
   );
 }
