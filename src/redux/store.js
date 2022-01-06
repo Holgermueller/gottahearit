@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import quoteReducer from "../features/quotes/quotesSlice";
+import quoteReducer from "./quotes";
 
 export default configureStore({
   reducer: {

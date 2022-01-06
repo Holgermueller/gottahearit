@@ -1,4 +1,4 @@
-import QuoteDisplay from "./Display/Display";
+import QuoteDisplay from "./Display/QuoteDisplay";
 import AuthorDisplay from "./Display/AuthorDisplay";
 import Button from "./Display/Button";
 import TwitterButton from "./Display/TwitterButton";
