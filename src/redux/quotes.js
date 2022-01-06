@@ -52,7 +52,7 @@ export const quoteSlice = createSlice({
       },
     ],
 
-    quoteToDisplay: [],
+    quoteToDisplay: null,
   },
 
   reducers: {
@@ -64,8 +64,6 @@ export const quoteSlice = createSlice({
     getRandomQuote: (state) => {
       state.quoteToDisplay =
         state.quotes[Math.floor(Math.random() * state.quotes.length)];
-
-      console.log(state.quoteToDisplay);
     },
   },
 });
