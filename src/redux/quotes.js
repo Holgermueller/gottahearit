@@ -57,13 +57,13 @@ export const quoteSlice = createSlice({
 
   reducers: {
     displayQuoteOnLoad: (state) => {
-      state.quoteToDisplay =
-        state.quotes[Math.floor(Math.random() * state.quotes.length)];
+      return (state.quoteToDisplay =
+        state.quotes[Math.floor(Math.random() * state.quotes.length)]);
     },
 
     getRandomQuote: (state) => {
-      state.quoteToDisplay =
-        state.quotes[Math.floor(Math.random() * state.quotes.length)];
+      return (state.quoteToDisplay =
+        state.quotes[Math.floor(Math.random() * state.quotes.length)]);
     },
   },
 });

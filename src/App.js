@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRandomQuote } from "./redux/quotes";
+import { displayQuoteOnLoad, getRandomQuote } from "./redux/quotes";
 import "./App.css";
 
 const display = {
@@ -20,6 +20,10 @@ const twitterLink = {
 export default function App() {
   const { quoteToDisplay } = useSelector((state) => state.quotes);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(displayQuoteOnLoad());
+  }, [dispatch]);
+
   return (
     <div id="quote-box" className="App">
       <div style={display} className="py-5 rounded-3 container-fluid bg-light">
