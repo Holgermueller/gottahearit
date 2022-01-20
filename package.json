@@ -2,9 +2,15 @@
   "name": "gottahearit",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "client": "cd client &&  npm run start",
+    "build": "cd client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client && npm install"
   },
   "repository": {
     "type": "git",
@@ -15,5 +21,17 @@
   "bugs": {
     "url": "https://github.com/Holgermueller/gottahearit/issues"
   },
-  "homepage": "https://github.com/Holgermueller/gottahearit#readme"
+  "homepage": "https://github.com/Holgermueller/gottahearit#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^4.17.2",
+    "if-env": "^1.0.4",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.1.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
 }
