@@ -10,6 +10,9 @@ export default class Nav extends Component {
             <a href="#">Home</a>
           </li>
           <li>
+            <a href="#">Add an Item</a>
+          </li>
+          <li>
             <a href="#">Log Out</a>
           </li>
         </ul>
