@@ -3,6 +3,8 @@ import Header from "./layout/header";
 import Nav from "./components/nav/nav";
 import Login from "./components/Login/LoginPage";
 import Registration from "./components/Registration/RegistrationPage";
+import Dashboard from "./components/Dashboard/Dashboard";
+import AddItem from "./components/AddItem/AddItem";
 import Footer from "./layout/footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -16,11 +18,14 @@ export default function App() {
           <Header />
           <Nav />
           <Routes>
-            <Route exact path="/" element={<Login />}></Route>
+            <Route exact path="/" element={<Login />} />
 
-            <Route path="/registration" element={<Registration />}></Route>
+            <Route path="/registration" element={<Registration />} />
+
+            <Route path="/dashboard" element={<Dashboard />} />
+
+            <Route path="/addItem" element={<AddItem />} />
           </Routes>
-
           <Footer />
         </div>
       </Fragment>

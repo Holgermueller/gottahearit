@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./nav.css";
 import { useNavigate } from "react-router-dom";
 
-function nav(props) {
+function Nav(props) {
   const navigate = useNavigate();
 
   return (
@@ -12,7 +12,10 @@ function nav(props) {
           <a href="/">Home</a>
         </li>
         <li>
-          <a href="#">Add an Item</a>
+          <a href="/dashboard">Dashboard</a>
+        </li>
+        <li>
+          <a href="/addItem">Add an Item</a>
         </li>
         <li>
           <a href="#">Log Out</a>
@@ -22,4 +25,4 @@ function nav(props) {
   );
 }
 
-export default nav;
+export default Nav;
