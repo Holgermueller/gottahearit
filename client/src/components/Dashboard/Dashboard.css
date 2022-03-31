@@ -1,0 +1,16 @@
+.btn-group .btn {
+  background-color: greenyellow;
+  border: 1px solid greenyellow;
+  color: black;
+  padding: 10px 24px;
+}
+
+.btn-group .btn:hover {
+  background-color: #3e8e41;
+  border-color: #3e8e41;
+}
+
+.form {
+  width: 85%;
+  margin: 8px auto;
+}
