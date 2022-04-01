@@ -11,14 +11,14 @@ function Nav(props) {
         <li onClick={() => navigate("/")}>
           <a href="/">Home</a>
         </li>
-        <li>
+        <li onClick={() => navigate("/dashboard")}>
           <a href="/dashboard">Dashboard</a>
         </li>
-        <li>
+        <li onClick={() => navigate("/addItem")}>
           <a href="/addItem">Add an Item</a>
         </li>
-        <li>
-          <a href="#">Log Out</a>
+        <li onClick={() => navigate("/")}>
+          <a href="/">Log Out</a>
         </li>
       </ul>
     </section>
