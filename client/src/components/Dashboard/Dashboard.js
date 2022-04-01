@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import "./Dashboard.css";
 
 function Dashboard(props) {
-  const [state] = useState({
+  const [state, setState] = useState({
     filterTerm: "",
   });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
 
   return (
     <section>
@@ -25,12 +34,17 @@ function Dashboard(props) {
             type="text"
             id="filterTerm"
             value={state.filterTerm}
+            onChange={handleChange}
             placeholder="Filter by name..."
           ></Form.Control>
         </Form.Group>
       </Form>
 
-      <h3>A list will go here</h3>
+      <Card className="list-card">
+        <Card.Body>
+          <Card.Text>This is the card where the list will appear.</Card.Text>
+        </Card.Body>
+      </Card>
     </section>
   );
 }
