@@ -52,8 +52,8 @@ function Registration(props) {
             value={state.confirmPassword}
             onChange={handleChange}
           ></Form.Control>
-          <Button type="submit">Submit</Button>
         </Form.Group>
+        <Button type="submit">Submit</Button>
       </Form>
     </section>
   );

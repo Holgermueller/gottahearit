@@ -44,8 +44,8 @@ function Login(props) {
             value={state.password}
             onChange={handleChange}
           ></Form.Control>
-          <Button type="submit">Submit</Button>
         </Form.Group>
+        <Button type="submit">Submit</Button>
       </Form>
       <div>
         <span>Don't have an account? </span>

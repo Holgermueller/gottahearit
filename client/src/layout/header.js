@@ -10,7 +10,7 @@ export default class Header extends Component {
   render() {
     return (
       <h1 className="bg-info text-white p-1 m-auto" style={headerStyles}>
-        GottaHearIt!!
+        Heard It!!
       </h1>
     );
   }

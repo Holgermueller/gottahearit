@@ -22,6 +22,7 @@ function Dashboard(props) {
       <h2>Dashboard</h2>
 
       <div className="btn-group">
+        <Button>Unheard</Button>
         <Button>Buy It</Button>
         <Button>Borrow It</Button>
         <Button>Pass</Button>
