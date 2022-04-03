@@ -44,8 +44,8 @@ function Dashboard(props) {
       </Form>
 
       {music.map((music) => (
-        <Card className="list-card">
-          <Card.Body key={music.id}>
+        <Card className="list-card" key={music.id}>
+          <Card.Body>
             <Card.Title>{music.artist}</Card.Title>
             <Card.Text>{music.title}</Card.Text>
           </Card.Body>
