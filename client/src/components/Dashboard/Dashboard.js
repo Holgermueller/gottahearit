@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./Dashboard.css";
 
 function Dashboard(props) {
+  const { music } = useSelector((state) => state.music);
   const [state, setState] = useState({
     filterTerm: "",
   });
@@ -41,11 +43,14 @@ function Dashboard(props) {
         </Form.Group>
       </Form>
 
-      <Card className="list-card">
-        <Card.Body>
-          <Card.Text>This is the card where the list will appear.</Card.Text>
-        </Card.Body>
-      </Card>
+      {music.map((music) => (
+        <Card className="list-card">
+          <Card.Body key={music.id}>
+            <Card.Title>{music.artist}</Card.Title>
+            <Card.Text>{music.title}</Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
     </section>
   );
 }
