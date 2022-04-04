@@ -20,6 +20,16 @@ function Login(props) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setState((prevState) => ({
+      ...prevState,
+    }));
+
+    console.log(state);
+  };
+
   return (
     <section className="form-section">
       <h2>Log In</h2>
@@ -45,7 +55,9 @@ function Login(props) {
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" onClick={() => handleSubmit}>
+          Submit
+        </Button>
       </Form>
       <div>
         <span>Don't have an account? </span>
