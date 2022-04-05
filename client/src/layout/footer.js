@@ -2,7 +2,6 @@ import { Component } from "react";
 
 const footerStyles = {
   width: "fit-content",
-  borderRadius: 15,
 };
 
 export default class Footer extends Component {

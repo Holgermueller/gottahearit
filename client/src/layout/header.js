@@ -2,8 +2,7 @@ import { Component } from "react";
 
 const headerStyles = {
   width: "55%",
-  borderRadius: 15,
-  margin: "4px",
+  margin: "8px",
 };
 
 export default class Header extends Component {
