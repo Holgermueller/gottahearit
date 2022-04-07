@@ -5,7 +5,7 @@ import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
-  const [state, setState] = useState({
+  const [logInData, setLoginData] = useState({
     email: "",
     password: "",
   });
@@ -13,34 +13,30 @@ function Login(props) {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: value,
+    e.persist();
+    setLoginData((logInData) => ({
+      ...logInData,
+      [e.target.id]: e.target.value,
     }));
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setState((prevState) => ({
-      ...prevState,
-    }));
-
-    console.log(state);
+    if (e) {
+      e.preventDefault();
+    }
   };
 
   return (
     <section className="form-section">
       <h2>Log In</h2>
-      <Form className="form">
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Control
             className="input"
             type="email"
             id="email"
             placeholder="Email"
-            value={state.email}
+            value={logInData.email}
             onChange={handleChange}
           ></Form.Control>
           <Form.Text className="text-muted">
@@ -51,7 +47,7 @@ function Login(props) {
             type="password"
             id="password"
             placeholder="Password"
-            value={state.password}
+            value={logInData.password}
             onChange={handleChange}
           ></Form.Control>
         </Form.Group>
