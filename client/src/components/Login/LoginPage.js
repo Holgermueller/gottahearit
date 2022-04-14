@@ -1,49 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
+import { useInput } from "../hooks/useInput";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./LoginPage.css";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
 function Login(props) {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = (data) => console.log(data);
-
-  // const [logInData, setLoginData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
+  const { value: email, bind: bindEmail, reset: resetEmail } = useInput("");
+  const {
+    value: password,
+    bind: bindPassword,
+    reset: resetPassword,
+  } = useInput("");
 
   const navigate = useNavigate();
 
-  // const handleChange = (e) => {
-  //   e.persist();
-  //   setLoginData((logInData) => ({
-  //     ...logInData,
-  //     [e.target.id]: e.target.value,
-  //   }));
-  // };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // const handleSubmit = (e) => {
-  //   if (e) {
-  //     e.preventDefault();
-  //   }
-  // };
+    console.log(password, email);
+    resetEmail();
+    resetPassword();
+  };
 
   return (
     <section className="form-section">
       <h2>Log In</h2>
-      <Form className="form" onSubmit={handleSubmit(onSubmit)}>
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Control
             className="input"
             type="email"
             id="email"
             placeholder="Email"
-            //value={logInData.email}
-            //onChange={handleChange}
-            {...register("email")}
+            {...bindEmail}
           ></Form.Control>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -53,9 +43,7 @@ function Login(props) {
             type="password"
             id="password"
             placeholder="Password"
-            //value={logInData.password}
-            // onChange={handleChange}
-            {...register("password")}
+            {...bindPassword}
           ></Form.Control>
         </Form.Group>
         <Button type="submit">Submit</Button>
