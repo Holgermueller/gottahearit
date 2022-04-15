@@ -1,55 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
+import { useInput } from "../hooks/useInput";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function AddItem() {
-  const [state, setState] = useState({
-    artist: "",
-    title: "",
-    type: "",
-  });
+  const { value: artist, bind: bindArtist, reset: resetArtist } = useInput("");
+  const { value: title, bind: bindTitle, reset: resetTitle } = useInput("");
+  const { value: type, bind: bindType, reset: resetType } = useInput("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const musicData = {
-      artist: state.artist,
-      title: state.title,
-      type: state.type,
-    };
-    console.log(musicData);
-  };
+    console.log(artist, title, type);
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
-    console.log(state);
+    resetArtist();
+    resetTitle();
+    resetType();
   };
 
   return (
     <section className="form-section">
       <h1>Add Item</h1>
 
-      <Form className="form">
+      <Form className="form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Control
             className="input"
             type="text"
             id="artist"
             placeholder="Artist"
-            value={state.artist}
-            onChange={handleChange}
+            {...bindArtist}
           ></Form.Control>
           <Form.Control
             className="input"
             type="text"
             id="title"
             placeholder="Title"
-            value={state.title}
-            onChange={handleChange}
+            {...bindTitle}
           ></Form.Control>
 
           <Form.Select
@@ -57,18 +44,15 @@ function AddItem() {
             className="input"
             type="select"
             id="type"
-            value={state.type}
-            onChange={handleChange}
+            {...bindType}
           >
             <option>Format</option>
-            <option value={state.type}>Album</option>
-            <option value={state.type}>EP</option>
-            <option value={state.type}>Single</option>
+            <option>Album</option>
+            <option>EP</option>
+            <option>Single</option>
           </Form.Select>
         </Form.Group>
-        <Button type="submit" onClick={() => handleSubmit()}>
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </Form>
     </section>
   );
