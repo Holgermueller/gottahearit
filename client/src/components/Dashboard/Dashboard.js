@@ -7,27 +7,42 @@ import "./Dashboard.css";
 
 function Dashboard(props) {
   const { music } = useSelector((state) => state.music);
-  const [state, setState] = useState({
-    filterTerm: "",
-  });
+  const [search, setSearch] = useState("");
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: value,
-    }));
+  const handleSearchFilter = (e) => {
+    setSearch(e.target.value);
   };
 
+  const filteredMusic = !search
+    ? music
+    : music.filter((record) =>
+        record.artist.toLowerCase().includes(search.toLowerCase())
+      );
+
+  const filterUnheard = (e) => {
+    console.log("unheard");
+  };
+
+  const filterBuyIt = (e) => {
+    console.log("buy it");
+  };
+
+  const filterBorrow = (e) => {
+    console.log("borrow");
+  };
+
+  const filterPasses = (e) => {
+    console.log("pass");
+  };
   return (
     <section>
       <h2>Dashboard</h2>
 
       <div className="btn-group">
-        <Button>Unheard</Button>
-        <Button>Buy It</Button>
-        <Button>Borrow It</Button>
-        <Button>Pass</Button>
+        <Button onClick={filterUnheard}>Unheard</Button>
+        <Button onClick={filterBuyIt}>Buy It</Button>
+        <Button onClick={filterBorrow}>Borrow It</Button>
+        <Button onClick={filterPasses}>Pass</Button>
       </div>
 
       <Form className="form">
@@ -36,18 +51,19 @@ function Dashboard(props) {
             className="input"
             type="text"
             id="filterTerm"
-            value={state.filterTerm}
-            onChange={handleChange}
+            value={search}
+            onChange={handleSearchFilter}
             placeholder="Filter by name..."
           ></Form.Control>
         </Form.Group>
       </Form>
 
-      {music.map((music) => (
+      {filteredMusic.map((music) => (
         <Card className="list-card" key={music.id}>
           <Card.Body>
             <Card.Title>{music.artist}</Card.Title>
             <Card.Text>{music.title}</Card.Text>
+            <Card.Text>{music.rating}</Card.Text>
           </Card.Body>
         </Card>
       ))}

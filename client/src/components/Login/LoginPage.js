@@ -13,8 +13,6 @@ function Login(props) {
     reset: resetPassword,
   } = useInput("");
 
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,6 +20,8 @@ function Login(props) {
     resetEmail();
     resetPassword();
   };
+
+  const navigate = useNavigate();
 
   return (
     <section className="form-section">
