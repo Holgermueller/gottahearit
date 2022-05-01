@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const albumSchema = new Schema({
-  title: { type: String, required: true },
-  artist: { type: String, required: true },
-  media: { type: String, required: true },
-  heardIt: { type: Boolean, required: true },
-  rating: { type: Number, required: true },
+  title: String,
+  artist: String,
+  media: String,
+  heardIt: Boolean,
+  rating: Number,
+  albumComments: String,
+  userId: String,
 });
 
 module.exports = mongoose.model("albumSchema", albumSchema);
