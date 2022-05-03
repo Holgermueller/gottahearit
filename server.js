@@ -5,6 +5,7 @@ const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
+//const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -18,12 +19,16 @@ const mongoDB = process.env.MONGO_URI;
 
 //const mongoDB = "mongodb://127.0.0.1/";
 
-mongoose.connect(mongoDB || "mongodb://127.0.0.1", {
+mongoose.connect(mongoDB || "mongodb://127.0.0.1/myFirstDatabase", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
+
+db.once("open", () => {
+  console.log("db connection!");
+});
 
 db.on("error", console.error.bind(console, "MongoDB connection error: "));
 
