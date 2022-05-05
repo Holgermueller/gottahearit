@@ -4,9 +4,7 @@ const { Schema } = mongoose;
 const albumSchema = new Schema({
   title: String,
   artist: String,
-  media: String,
-  heardIt: Boolean,
-  rating: Number,
+  type: String,
   albumComments: String,
   userId: String,
 });
