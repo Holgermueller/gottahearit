@@ -8,15 +8,29 @@ module.exports = {
   },
 
   addMusic: (req, res) => {
-    const newMusic = {};
+    const newMusic = req.body;
     Music.create(newMusic)
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
 
-  findMusicById: (req, res) => {},
+  findMusicById: (req, res) => {
+    Music.findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 
-  editMusicInfo: (req, res) => {},
+  editMusicInfo: (req, res) => {
+    Music.findOneAndUpdate(
+      {
+        _id: req.params.id,
+      },
+      req.body,
+      { upsert: true }
+    )
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 
   deleteMusic: (req, res) => {
     Music.findById({ _id: req.params.id })
