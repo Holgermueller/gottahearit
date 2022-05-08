@@ -6,16 +6,18 @@ const logger = require("morgan");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const PORT = process.env.PORT || 3001;
 
 connectDB();
 
-const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(logger("dev"));
 
 app.use(cors());
 app.use(compression());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/music", require("./routes/musicRoutes"));
 
