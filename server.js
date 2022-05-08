@@ -5,7 +5,6 @@ const path = require("path");
 const logger = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
-//const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,9 +14,9 @@ app.use(logger("dev"));
 app.use(cors());
 app.use(compression());
 
-const mongoDB = process.env.MONGO_URI;
+app.use("/api/music", require("./routes/musicRoutes"));
 
-//const mongoDB = "mongodb://127.0.0.1/";
+const mongoDB = process.env.MONGO_URI;
 
 mongoose.connect(mongoDB || "mongodb://127.0.0.1/myFirstDatabase", {
   useNewUrlParser: true,
@@ -33,5 +32,5 @@ db.once("open", () => {
 db.on("error", console.error.bind(console, "MongoDB connection error: "));
 
 app.listen(PORT, () => {
-  console.log("API server now listening on PORT " + PORT);
+  console.log("API server listening on PORT " + PORT);
 });

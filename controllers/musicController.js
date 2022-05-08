@@ -1,41 +1,36 @@
 const Music = require("../models/albums");
 
+//@Desc Get music
+//@route GET /api/music
+//@access Private
+const getMusic = (req, res) => {
+  res.status(200).json({ message: "get listening" });
+};
+
+//@Desc Add music
+//@route POST /api/music
+//@access Private
+const addMusic = (req, res) => {
+  res.status(200).json({ message: "added music" });
+};
+
+//@Desc Update music
+//@route PUT /api/music/:id
+//@access Private
+const updateMusic = (req, res) => {
+  res.status(200).json({ message: `added music ${req.params.id}` });
+};
+
+//@Desc Delete music
+//@route DELETE /api/music/:id
+//@access Private
+const deleteMusic = (req, res) => {
+  res.status(200).json({ message: `Delete music ${req.params.id}` });
+};
+
 module.exports = {
-  getAllMusic: (req, res) => {
-    Music.find(req.query)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-
-  addMusic: (req, res) => {
-    const newMusic = req.body;
-    Music.create(newMusic)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-
-  findMusicById: (req, res) => {
-    Music.findById(req.params.id)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-
-  editMusicInfo: (req, res) => {
-    Music.findOneAndUpdate(
-      {
-        _id: req.params.id,
-      },
-      req.body,
-      { upsert: true }
-    )
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
-
-  deleteMusic: (req, res) => {
-    Music.findById({ _id: req.params.id })
-      .then((dbModel) => dbModel.remove())
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
-  },
+  getMusic,
+  addMusic,
+  updateMusic,
+  deleteMusic,
 };
