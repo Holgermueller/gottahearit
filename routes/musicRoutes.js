@@ -5,8 +5,9 @@ const {
   updateMusic,
   deleteMusic,
 } = require("../controllers/musicController");
+const { protect } = require("../middleware/authMiddleware");
 
-router.route("/").get(getMusic).post(addMusic);
-router.route("/:id").delete(deleteMusic).put(updateMusic);
+router.route("/").get(protect, getMusic).post(protect, addMusic);
+router.route("/:id").delete(protect, deleteMusic).put(protect, updateMusic);
 
 module.exports = router;

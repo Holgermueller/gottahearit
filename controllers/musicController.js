@@ -1,13 +1,12 @@
 const asyncHandler = require("express-async-handler");
-const { update } = require("../models/music");
-
 const Music = require("../models/music");
+const User = require("../models/users");
 
 //@Desc Get music
 //@route GET /api/music
 //@access Private
 const getMusic = asyncHandler(async (req, res) => {
-  const music = await Music.find();
+  const music = await Music.find({ user: req.user.id });
 
   res.status(200).json(music);
 });
@@ -23,6 +22,7 @@ const addMusic = asyncHandler(async (req, res) => {
 
   const newMusic = await Music.create({
     title: req.body.title,
+    user: req.user.id,
   });
 
   res.status(200).json(newMusic);
@@ -37,6 +37,16 @@ const updateMusic = asyncHandler(async (req, res) => {
   if (!music) {
     res.status(400);
     throw new Error("Music not found");
+  }
+
+  if (!req.user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  if (music.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
   }
 
   const updatedMusic = await Music.findByIdAndUpdate(req.params.id, req.body, {
@@ -55,6 +65,16 @@ const deleteMusic = asyncHandler(async (req, res) => {
   if (!music) {
     res.status(400);
     throw new Error("Music not found");
+  }
+
+  if (!req.user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  if (music.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
   }
 
   await music.remove();
