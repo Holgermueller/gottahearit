@@ -1,30 +1,27 @@
-import React from "react";
-import { useInput } from "../hooks/useInput";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./RegistrationPage.css";
 
-function Registration(props) {
-  const { value: email, bind: bindEmail, reset: resetEmail } = useInput("");
-  const {
-    value: password,
-    bind: bindPassword,
-    reset: resetPassword,
-  } = useInput("");
-  const {
-    value: confirmPassword,
-    bind: bindConfirmPassword,
-    reset: resetConfirmPassword,
-  } = useInput("");
+function Registration() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const { name, email, password, confirmPassword } = formData;
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(password, confirmPassword, email);
-
-    resetEmail();
-    resetPassword();
-    resetConfirmPassword();
   };
 
   return (
@@ -35,10 +32,19 @@ function Registration(props) {
         <Form.Group className="mb-3">
           <Form.Control
             className="input"
+            type="text"
+            id="name"
+            placeholder="Name"
+            value={name}
+            onChange={onChange}
+          ></Form.Control>
+          <Form.Control
+            className="input"
             type="email"
             id="email"
             placeholder="Email"
-            {...bindEmail}
+            value={email}
+            onChange={onChange}
           ></Form.Control>
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
@@ -48,14 +54,16 @@ function Registration(props) {
             type="password"
             id="password"
             placeholder="Password"
-            {...bindPassword}
+            value={password}
+            onChange={onChange}
           ></Form.Control>
           <Form.Control
             className="input"
             type="password"
             id="confirmPassword"
             placeholder="Confirm password"
-            {...bindConfirmPassword}
+            value={confirmPassword}
+            onChange={onChange}
           ></Form.Control>
         </Form.Group>
         <Button type="submit">Submit</Button>
