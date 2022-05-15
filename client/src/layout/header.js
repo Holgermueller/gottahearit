@@ -1,16 +1,11 @@
-import { Component } from "react";
+import "./layout.css";
 
-const headerStyles = {
-  width: "55%",
-  margin: "8px",
-};
-
-export default class Header extends Component {
-  render() {
-    return (
-      <h1 className="bg-info text-white p-1 m-auto" style={headerStyles}>
-        Heard It!!
-      </h1>
-    );
-  }
+function Header() {
+  return (
+    <>
+      <h1 className="bg-info text-white p-1 m-auto headerStyles">Heard It!!</h1>
+    </>
+  );
 }
+
+export default Header;

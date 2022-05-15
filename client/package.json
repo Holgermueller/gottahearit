@@ -1,6 +1,7 @@
 {
   "name": "quote-machine",
   "version": "0.1.0",
+  "proxy": "http://localhost:3000",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
@@ -16,6 +17,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-toastify": "^9.0.1",
     "redux": "^4.1.2",
     "web-vitals": "^2.1.2"
   },
