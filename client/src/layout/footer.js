@@ -1,15 +1,11 @@
-import { Component } from "react";
+import "./Layout.css";
 
-const footerStyles = {
-  width: "fit-content",
-};
-
-export default class Footer extends Component {
-  render() {
-    return (
-      <footer className="bg-info text-white p-1 m-auto" style={footerStyles}>
-        &copy; 2022 Holger Mueller
-      </footer>
-    );
-  }
+function Footer() {
+  return (
+    <footer className="bg-info text-white p-1 m-auto footerStyles">
+      &copy; 2022 Holger Mueller
+    </footer>
+  );
 }
+
+export default Footer;

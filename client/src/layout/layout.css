@@ -24,3 +24,8 @@
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
+
+.footerStyles {
+  width: "fit-content";
+  background-color: red;
+}
