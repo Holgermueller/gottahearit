@@ -1,6 +1,6 @@
 .headerStyles {
-  width: "55%";
-  margin: "8px";
+  width: 55%;
+  margin: 8px;
 }
 
 .loadingSpinnerContainer {
@@ -25,7 +25,6 @@
   animation: spin 1.2s linear infinite;
 }
 
-.footerStyles {
-  width: "fit-content";
-  background-color: red;
+.footer-styles {
+  width: fit-content;
 }

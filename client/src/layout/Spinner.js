@@ -1,3 +1,5 @@
+import "./layout.css";
+
 function Spinner() {
   return (
     <div className="loadingSpinnerContainer">
