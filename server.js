@@ -10,6 +10,11 @@ const PORT = process.env.PORT || 3001;
 
 connectDB();
 
+// let http = require("http");
+// let size = http.maxHeaderSize;
+// console.log("Max header size: ", size);
+// 16384
+
 const app = express();
 
 app.use(logger("dev"));
