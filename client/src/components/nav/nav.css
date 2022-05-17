@@ -10,7 +10,8 @@ li {
   float: left;
 }
 
-li a {
+li a,
+li button {
   display: block;
   text-align: center;
   text-decoration: none;
@@ -18,6 +19,11 @@ li a {
   color: white;
 }
 
-li a:hover {
+li a:hover,
+li button:hover {
   background-color: aquamarine;
+}
+
+button {
+  background-color: #333333;
 }

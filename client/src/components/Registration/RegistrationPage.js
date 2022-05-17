@@ -40,7 +40,7 @@ function Registration() {
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.id]: e.target.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -73,6 +73,7 @@ function Registration() {
           <Form.Control
             className="input"
             type="text"
+            name="name"
             id="name"
             placeholder="Name"
             value={name}
@@ -81,6 +82,7 @@ function Registration() {
           <Form.Control
             className="input"
             type="email"
+            name="email"
             id="email"
             placeholder="Email"
             value={email}
@@ -92,6 +94,7 @@ function Registration() {
           <Form.Control
             className="input"
             type="password"
+            name="password"
             id="password"
             placeholder="Password"
             value={password}
@@ -100,6 +103,7 @@ function Registration() {
           <Form.Control
             className="input"
             type="password"
+            name="confirmPassword"
             id="confirmPassword"
             placeholder="Confirm password"
             value={confirmPassword}

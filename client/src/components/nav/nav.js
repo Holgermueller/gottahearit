@@ -1,24 +1,33 @@
-import React, { useState } from "react";
 import "./nav.css";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logout, reset } from "../../features/auth/authSlice";
 
-function Nav(props) {
+function Nav() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+
+  const onLogout = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
 
   return (
     <section id="navigation" className="m-2">
       <ul>
-        <li onClick={() => navigate("/")}>
-          <a href="/">Home</a>
+        <li>
+          <Link to="/">Home</Link>
         </li>
-        <li onClick={() => navigate("/dashboard")}>
-          <a href="/dashboard">Dashboard</a>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
-        <li onClick={() => navigate("/addItem")}>
-          <a href="/addItem">Add an Item</a>
+        <li>
+          <Link to="/addItem">Add an Item</Link>
         </li>
-        <li onClick={() => navigate("/")}>
-          <a href="/">Log Out</a>
+        <li>
+          <button onClick={onLogout}>Logout</button>
         </li>
       </ul>
     </section>
