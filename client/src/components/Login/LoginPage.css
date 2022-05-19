@@ -14,3 +14,6 @@
   color: blue;
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+}

@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./LoginPage.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login, reset } from "../../features/auth/authSlice";
+import Spinner from "../../layout/Spinner";
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -11,6 +15,25 @@ function Login() {
   });
 
   const { email, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/dashboard");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -26,9 +49,13 @@ function Login() {
       email,
       password,
     };
+
+    dispatch(login(userData));
   };
 
-  const navigate = useNavigate();
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <section className="form-section">
@@ -39,6 +66,7 @@ function Login() {
             className="input"
             type="email"
             id="email"
+            name="email"
             placeholder="Email"
             value={email}
             onChange={onChange}
@@ -50,6 +78,7 @@ function Login() {
             className="input"
             type="password"
             id="password"
+            name="password"
             placeholder="Password"
             value={password}
             onChange={onChange}
@@ -59,11 +88,8 @@ function Login() {
       </Form>
       <div>
         <span>Don't have an account? </span>
-        <span
-          className="registrationLink"
-          onClick={() => navigate("/registration")}
-        >
-          Register
+        <span className="registrationLink">
+          <Link to="/registration">Register</Link>
         </span>
       </div>
     </section>
