@@ -6,18 +6,17 @@ import Card from "react-bootstrap/Card";
 import "./Dashboard.css";
 
 function Dashboard(props) {
-  const { music } = useSelector((state) => state.music);
   const [search, setSearch] = useState("");
 
   const handleSearchFilter = (e) => {
     setSearch(e.target.value);
   };
 
-  const filteredMusic = !search
-    ? music
-    : music.filter((record) =>
-        record.artist.toLowerCase().includes(search.toLowerCase())
-      );
+  // const filteredMusic = !search
+  //   ? music
+  //   : music.filter((record) =>
+  //       record.artist.toLowerCase().includes(search.toLowerCase())
+  //     );
 
   const filterUnheard = (e) => {
     console.log("unheard");
@@ -58,7 +57,7 @@ function Dashboard(props) {
         </Form.Group>
       </Form>
 
-      {filteredMusic.map((music) => (
+      {/* {filteredMusic.map((music) => (
         <Card className="list-card" key={music.id}>
           <Card.Body>
             <Card.Title>{music.artist}</Card.Title>
@@ -66,7 +65,7 @@ function Dashboard(props) {
             <Card.Text>{music.rating}</Card.Text>
           </Card.Body>
         </Card>
-      ))}
+      ))} */}
     </section>
   );
 }
