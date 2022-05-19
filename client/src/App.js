@@ -22,11 +22,8 @@ export default function App() {
             <Nav />
             <Routes>
               <Route exact path="/" element={<Login />} />
-
               <Route path="/registration" element={<Registration />} />
-
               <Route path="/dashboard" element={<Dashboard />} />
-
               <Route path="/addItem" element={<AddItem />} />
             </Routes>
             <Footer />

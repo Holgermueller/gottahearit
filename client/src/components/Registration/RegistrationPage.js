@@ -48,7 +48,7 @@ function Registration() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords to not match");
+      toast.error("Passwords do not match");
     } else {
       const userData = {
         name,

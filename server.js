@@ -1,7 +1,7 @@
-const dotenv = require("dotenv").config();
 const express = require("express");
 const compression = require("compression");
 const colors = require("colors");
+const dotenv = require("dotenv").config();
 const logger = require("morgan");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const cors = require("cors");
