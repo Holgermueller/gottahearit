@@ -17,18 +17,31 @@ function Nav() {
   return (
     <section id="navigation" className="m-2">
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/addItem">Add an Item</Link>
-        </li>
-        <li>
-          <button onClick={onLogout}>Logout</button>
-        </li>
+        {user ? (
+          <>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              <Link to="/addItem">Add an Item</Link>
+            </li>
+            <li>
+              <button onClick={onLogout}>Logout</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/registration">Register</Link>
+            </li>
+          </>
+        )}
       </ul>
     </section>
   );
