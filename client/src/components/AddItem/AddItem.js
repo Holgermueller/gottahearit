@@ -1,21 +1,37 @@
-import React from "react";
-import { useInput } from "../hooks/useInput";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addMusic } from "../../features/music/musicSlice";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function AddItem() {
-  const { value: artist, bind: bindArtist, reset: resetArtist } = useInput("");
-  const { value: title, bind: bindTitle, reset: resetTitle } = useInput("");
-  const { value: type, bind: bindType, reset: resetType } = useInput("");
+  const [formData, setFormData] = useState({
+    artist: "",
+    title: "",
+    type: "",
+  });
+
+  const { artist, title, type } = formData;
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(artist, title, type);
+    const musicData = {
+      artist,
+      title,
+      type,
+    };
 
-    resetArtist();
-    resetTitle();
-    resetType();
+    dispatch(addMusic(musicData));
   };
 
   return (
@@ -29,14 +45,18 @@ function AddItem() {
             type="text"
             id="artist"
             placeholder="Artist"
-            {...bindArtist}
+            value={artist}
+            name="artist"
+            onChange={handleChange}
           ></Form.Control>
           <Form.Control
             className="input"
             type="text"
             id="title"
             placeholder="Title"
-            {...bindTitle}
+            name="title"
+            value={title}
+            onChange={handleChange}
           ></Form.Control>
 
           <Form.Select
@@ -44,7 +64,9 @@ function AddItem() {
             className="input"
             type="select"
             id="type"
-            {...bindType}
+            name="type"
+            value={type}
+            onChange={handleChange}
           >
             <option>Format</option>
             <option>Album</option>

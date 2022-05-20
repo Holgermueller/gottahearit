@@ -1,22 +1,31 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./Dashboard.css";
 
 function Dashboard(props) {
-  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleSearchFilter = (e) => {
     setSearch(e.target.value);
   };
 
-  // const filteredMusic = !search
-  //   ? music
-  //   : music.filter((record) =>
-  //       record.artist.toLowerCase().includes(search.toLowerCase())
-  //     );
+  const filteredMusic = !search
+    ? music
+    : music.filter((record) =>
+        record.artist.toLowerCase().includes(search.toLowerCase())
+      );
 
   const filterUnheard = (e) => {
     console.log("unheard");
@@ -35,7 +44,7 @@ function Dashboard(props) {
   };
   return (
     <section>
-      <h2>Dashboard</h2>
+      <h2>Hello, {user && user.name}</h2>
 
       <div className="btn-group">
         <Button onClick={filterUnheard}>Unheard</Button>
@@ -57,15 +66,25 @@ function Dashboard(props) {
         </Form.Group>
       </Form>
 
-      {/* {filteredMusic.map((music) => (
-        <Card className="list-card" key={music.id}>
+      {filteredMusic.length > 0 ? (
+        <>
+          {filteredMusic.map((music) => (
+            <Card className="list-card" key={music.id}>
+              <Card.Body>
+                <Card.Title>{music.artist}</Card.Title>
+                <Card.Text>{music.title}</Card.Text>
+                <Card.Text>{music.rating}</Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </>
+      ) : (
+        <Card className="list-card">
           <Card.Body>
-            <Card.Title>{music.artist}</Card.Title>
-            <Card.Text>{music.title}</Card.Text>
-            <Card.Text>{music.rating}</Card.Text>
+            <Card.Title>You have not added any music</Card.Title>
           </Card.Body>
         </Card>
-      ))} */}
+      )}
     </section>
   );
 }

@@ -8,5 +8,13 @@ const initialState = {
   message: "",
 };
 
+export const musicSlice = createSlice({
+  name: "music",
+  initialState,
+  reducers: {
+    reset: (state) => initialState,
+  },
+});
+
 export const { reset } = musicSlice.actions;
 export default musicSlice.reducer;
