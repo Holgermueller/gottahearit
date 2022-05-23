@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const compression = require("compression");
 const colors = require("colors");
@@ -10,11 +11,6 @@ const PORT = process.env.PORT || 3001;
 
 connectDB();
 
-// let http = require("http");
-// let size = http.maxHeaderSize;
-// console.log("Max header size: ", size);
-// 16384
-
 const app = express();
 
 app.use(logger("dev"));
@@ -26,6 +22,18 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/music", require("./routes/musicRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 app.use(errorHandler);
 

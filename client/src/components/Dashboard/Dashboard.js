@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Spinner from "../../layout/Spinner";
+import MusicCard from "./MusicCard";
 import "./Dashboard.css";
 import { getMusic, reset } from "../../features/music/musicSlice";
 
@@ -65,13 +65,7 @@ function Dashboard(props) {
       {music.length > 0 ? (
         <>
           {music.map((music) => (
-            <Card className="list-card" key={music._id}>
-              <Card.Body>
-                <Card.Title>{music.artist}</Card.Title>
-                <Card.Text>{music.title}</Card.Text>
-                <Card.Text>{music.type}</Card.Text>
-              </Card.Body>
-            </Card>
+            <MusicCard key={music._id} music={music} />
           ))}
         </>
       ) : (
