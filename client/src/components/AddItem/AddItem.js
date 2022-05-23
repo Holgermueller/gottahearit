@@ -58,21 +58,6 @@ function AddItem() {
             value={title}
             onChange={handleChange}
           ></Form.Control>
-
-          <Form.Select
-            aria-label="format-select"
-            className="input"
-            type="select"
-            id="type"
-            name="type"
-            value={type}
-            onChange={handleChange}
-          >
-            <option>Format</option>
-            <option>Album</option>
-            <option>EP</option>
-            <option>Single</option>
-          </Form.Select>
         </Form.Group>
         <Button type="submit">Submit</Button>
       </Form>

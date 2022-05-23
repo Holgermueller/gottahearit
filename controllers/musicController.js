@@ -23,6 +23,7 @@ const addMusic = asyncHandler(async (req, res) => {
   const newMusic = await Music.create({
     title: req.body.title,
     user: req.user.id,
+    artist: req.body.artist,
   });
 
   res.status(200).json(newMusic);
