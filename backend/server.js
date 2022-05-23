@@ -24,11 +24,11 @@ app.use("/api/music", require("./routes/musicRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
   app.get("*", (req, res) =>
     res.sendFile(
-      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+      path.resolve(__dirname, "../", "client", "build", "index.html")
     )
   );
 } else {
