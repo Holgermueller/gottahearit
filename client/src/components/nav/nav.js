@@ -2,6 +2,7 @@ import "./nav.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout, reset } from "../../features/auth/authSlice";
+import AddItem from "../Dashboard/AddItemDialog";
 
 function Nav() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Nav() {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="/addItem">Add an Item</Link>
+              <AddItem />
             </li>
             <li>
               <button onClick={onLogout}>Logout</button>
