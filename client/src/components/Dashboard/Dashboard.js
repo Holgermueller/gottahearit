@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
@@ -8,7 +8,9 @@ import MusicCard from "./MusicCard";
 import "./Dashboard.css";
 import { getMusic, reset } from "../../features/music/musicSlice";
 
-function Dashboard(props) {
+function Dashboard() {
+  const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -37,15 +39,15 @@ function Dashboard(props) {
     return <Spinner />;
   }
 
-  // const handleSearchFilter = (e) => {
-  //   setSearch(e.target.value);
-  // };
+  const handleSearchFilter = (e) => {
+    setSearch(e.target.value);
+  };
 
-  // const filteredMusic = !search
-  //   ? music
-  //   : music.filter((record) =>
-  //       record.artist.toLowerCase().includes(search.toLowerCase())
-  //     );
+  const filteredMusic = !search
+    ? music
+    : music.filter((record) =>
+        record.artist.toLowerCase().includes(search.toLowerCase())
+      );
 
   return (
     <section>
@@ -57,14 +59,16 @@ function Dashboard(props) {
             className="input"
             type="text"
             id="filterTerm"
+            value={search}
+            onChange={handleSearchFilter}
             placeholder="Filter by name..."
           ></Form.Control>
         </Form.Group>
       </Form>
 
-      {music.length > 0 ? (
+      {filteredMusic.length > 0 ? (
         <>
-          {music.map((music) => (
+          {filteredMusic.map((music) => (
             <MusicCard key={music._id} music={music} />
           ))}
         </>
